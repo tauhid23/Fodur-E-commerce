@@ -24,12 +24,12 @@ const CategorySection = () => {
 
   // Navigate to collections page
   const handleViewAll = () => {
-    const query =
+    const path =
       activeCategory === "all"
-        ? ""
-        : `?category=${activeCategory}`;
+        ? "collections"
+        : `/collections/${activeCategory}`;
 
-    router.push(`/collections${query}`);
+    router.push(path);
   };
 
   return (

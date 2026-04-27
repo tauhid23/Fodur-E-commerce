@@ -55,11 +55,11 @@ export default async function OrderSuccessPage({ params }: Props) {
           </Link>
 
           <Link
-            href={`/collections/${slug}`}
+            href={"/orders"}
             className="flex-1 py-3 rounded-2xl bg-black text-white text-sm font-medium hover:bg-gray-900 transition flex items-center justify-center gap-2"
           >
             <ShoppingBag size={16} />
-            View Product
+            View Orders
           </Link>
         </div>
       </div>

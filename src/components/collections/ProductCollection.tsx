@@ -1,12 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
 import ProductCard, {
   Product as ProductCardType,
 } from "../shared_Component/ProductCard";
-import { products } from "@/lib/constants";
 import FilterPanel from "./FilterPanel";
 import SortPanel from "./SortPanel";
 
@@ -21,46 +20,38 @@ type ProductWithCategory = ProductCardType & {
   category: "men" | "women" | "kids";
 };
 
-// Pre-process products once
-const typedProducts: ProductWithCategory[] = products.map((product) => ({
-  ...product,
-  id: Number(product.id),
-})) as ProductWithCategory[];
+// Props from server page
+type ProductCollectionProps = {
+  initialCategory?: Category;
+  initialProducts: ProductWithCategory[];
+};
 
-const ProductCollection = () => {
+const ProductCollection = ({
+  initialCategory = "all",
+  initialProducts,
+}: ProductCollectionProps) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [filterOpen, setFilterOpen] = useState(false);
-const [sortOpen,   setSortOpen]   = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
 
   const [sortBy, setSortBy] = useState<SortOption>("default");
 
-  // URL Category
-  const categoryFromURL =
-    (searchParams.get("category")?.toLowerCase() as Category) || "all";
-
-  const activeCategory = categories.includes(categoryFromURL)
-    ? categoryFromURL
-    : "all";
+  // Server-driven category
+  const activeCategory = initialCategory;
 
   // Change category
   const handleCategoryChange = (category: Category) => {
     if (category === "all") {
       router.push("/collections");
     } else {
-      router.push(`/collections?category=${category}`);
+      router.push(`/collections/${category}`);
     }
   };
 
   // Filter + Sort
   const filteredProducts = useMemo(() => {
-    let filtered =
-      activeCategory === "all"
-        ? [...typedProducts]
-        : typedProducts.filter(
-            (product) => product.category.toLowerCase() === activeCategory
-          );
+    let filtered = [...initialProducts];
 
     switch (sortBy) {
       case "lowToHigh":
@@ -81,7 +72,7 @@ const [sortOpen,   setSortOpen]   = useState(false);
       default:
         return filtered;
     }
-  }, [activeCategory, sortBy]);
+  }, [initialProducts, sortBy]);
 
   return (
     <section className="w-full py-8 px-4 sm:px-6 lg:px-8">
@@ -94,71 +85,71 @@ const [sortOpen,   setSortOpen]   = useState(false);
       </div>
 
       {/* Filter + Category Bar */}
-<div className="mb-10">
+      <div className="mb-10">
 
-  {/* Categories */}
-  <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide pb-0">
-    {categories.map((category) => {
-      const isActive = activeCategory === category;
-      return (
-        <button
-          key={category}
-          type="button"
-          onClick={() => handleCategoryChange(category)}
-          className={`relative whitespace-nowrap text-sm font-medium capitalize pb-3.5
-            transition-colors duration-200
-            ${isActive ? "text-black" : "text-gray-400 hover:text-gray-700"}`}
-        >
-          {category}
-          <span
-            className={`absolute bottom-0 left-0 h-[2px] rounded-full transition-all duration-300
-              ${isActive ? "w-full bg-black" : "w-0 bg-transparent"}`}
-          />
-        </button>
-      );
-    })}
-  </div>
+        {/* Categories */}
+        <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide pb-0">
+          {categories.map((category) => {
+            const isActive = activeCategory === category;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => handleCategoryChange(category)}
+                className={`relative whitespace-nowrap text-sm font-medium capitalize pb-3.5
+                  transition-colors duration-200
+                  ${isActive ? "text-black" : "text-gray-400 hover:text-gray-700"}`}
+              >
+                {category}
+                <span
+                  className={`absolute bottom-0 left-0 h-[2px] rounded-full transition-all duration-300
+                    ${isActive ? "w-full bg-black" : "w-0 bg-transparent"}`}
+                />
+              </button>
+            );
+          })}
+        </div>
 
-  {/* Full-width divider + two equal buttons below */}
-  <div className="border border-gray-200 rounded-sm mt-0">
-    <div className="grid grid-cols-2 divide-x divide-gray-200">
+        {/* Full-width divider + two equal buttons below */}
+        <div className="border border-gray-200 rounded-sm mt-0">
+          <div className="grid grid-cols-2 divide-x divide-gray-200">
 
-      {/* Filter */}
-      <button
-        type="button"
-        onClick={() => setFilterOpen(true)}
-        className="flex items-center justify-center gap-2 py-3.5 text-xs font-medium
-          tracking-widest uppercase text-gray-500 hover:text-black hover:bg-gray-50
-          transition-all duration-200"
-      >
-        <SlidersHorizontal size={13} />
-        Filter
-      </button>
+            {/* Filter */}
+            <button
+              type="button"
+              onClick={() => setFilterOpen(true)}
+              className="flex items-center justify-center gap-2 py-3.5 text-xs font-medium
+                tracking-widest uppercase text-gray-500 hover:text-black hover:bg-gray-50
+                transition-all duration-200"
+            >
+              <SlidersHorizontal size={13} />
+              Filter
+            </button>
 
-      {/* Sort By */}
-      <button
-        type="button"
-        onClick={() => setSortOpen(true)}
-        className="flex items-center justify-center gap-2 py-3.5 text-xs font-medium
-          tracking-widest uppercase text-gray-500 hover:text-black hover:bg-gray-50
-          transition-all duration-200"
-      >
-        Sort By
-        <ChevronDown size={13} />
-      </button>
+            {/* Sort By */}
+            <button
+              type="button"
+              onClick={() => setSortOpen(true)}
+              className="flex items-center justify-center gap-2 py-3.5 text-xs font-medium
+                tracking-widest uppercase text-gray-500 hover:text-black hover:bg-gray-50
+                transition-all duration-200"
+            >
+              Sort By
+              <ChevronDown size={13} />
+            </button>
 
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
+      </div>
 
-{/* Panels */}
-<FilterPanel open={filterOpen} onClose={() => setFilterOpen(false)} />
-<SortPanel
-  open={sortOpen}
-  onClose={() => setSortOpen(false)}
-  sortBy={sortBy}
-  onSortChange={setSortBy}
-/>
+      {/* Panels */}
+      <FilterPanel open={filterOpen} onClose={() => setFilterOpen(false)} />
+      <SortPanel
+        open={sortOpen}
+        onClose={() => setSortOpen(false)}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+      />
 
       {/* Products */}
       {filteredProducts.length > 0 ? (
@@ -171,7 +162,7 @@ const [sortOpen,   setSortOpen]   = useState(false);
                 title: product.title,
                 price: product.price,
                 image: product.image,
-                slug:product.slug
+                slug: product.slug,
               }}
               onAddToCart={(p) => console.log("Add to cart:", p)}
             />
