@@ -9,7 +9,7 @@ const SubscribeSection = () => {
       {/* Subscribe */}
       <div className="text-center max-w-md mx-auto">
         
-        <h2 className="font-body text-xl font-semibold tracking-wide text-black">
+        <h2 className=" text-2xl font-body font-extralight italic tracking-wide text-black">
           SUBSCRIBE
         </h2>
 

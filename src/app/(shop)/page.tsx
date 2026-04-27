@@ -11,11 +11,11 @@ export default function Home() {
     <div className=" space-y-7">
       <HomeHero/>
       <CategorySection/>
-      <div className="h-px w-full bg-foreground/50"></div>
+      <div className="h-px w-full bg-foreground/20"></div>
       <ReviewSection/>
       <BigCategory/>
       <InfoSlider/>
-      <div className="h-px w-full bg-foreground/50"></div>
+      <div className="h-px w-full bg-foreground/20"></div>
       <SubscribeSection/>
       <FeatureGrid/>
     </div>

@@ -42,7 +42,7 @@ export default function Navbar() {
         <nav className="mx-auto max-w-7xl px-4 md:px-6">
 
           {/* ── Mobile bar ── */}
-          <div className="flex h-16 items-center justify-between lg:hidden">
+          <div className="flex h-14 items-center justify-between lg:hidden">
             <motion.button
               type="button"
               whileTap={{ scale: 0.9 }}
@@ -53,7 +53,7 @@ export default function Navbar() {
               <Menu size={22} />
             </motion.button>
 
-            <Link href="/" className="text-[22px] font-heading italic font-bold tracking-[0.2em] text-accent">
+            <Link href="/" className="text-[25px] font-heading italic font-extrabold tracking-widest text-accent">
               {LOGO}
             </Link>
 
@@ -73,7 +73,7 @@ export default function Navbar() {
           </div>
 
           {/* ── Desktop bar ── */}
-          <div className="hidden h-[72px] items-center justify-between lg:flex">
+          <div className="hidden h-18 items-center justify-between lg:flex">
             <Link href="/" className="text-xl font-bold tracking-[0.2em] text-accent hover:opacity-80 transition">
               {LOGO}
             </Link>

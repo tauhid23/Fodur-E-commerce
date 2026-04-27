@@ -67,10 +67,10 @@ export default function BuyNoww({ product }: Props) {
   return (
     <div className="min-h-screen bg-[#f8f7f5] font-sans">
       {/* Header */}
-      <header className="bg-white border-b border-gray-100 px-4 py-4">
+      <header className=" border-b border-gray-100 px-4 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <span className="text-xl font-semibold tracking-tight">
-            YourStore
+            Your Store
           </span>
           <div className="flex items-center gap-1.5 text-xs text-gray-400">
             <Lock size={11} />
