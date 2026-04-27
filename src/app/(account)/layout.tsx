@@ -1,23 +1,18 @@
-import { redirect } from "next/navigation";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
-// Replace with your real auth check (next-auth, clerk, etc.)
-async function getSession() {
-  return null; // your session logic here
+interface ShopLayoutProps {
+  children: React.ReactNode;
 }
 
-export default async function AccountLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-//   const session = await getSession();
-
-//   if (!session) redirect("/login");
-
+export default function ShopLayout({ children }: ShopLayoutProps) {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      {/* Optional: account sidebar/nav here */}
-      {children}
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-1 ">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 }

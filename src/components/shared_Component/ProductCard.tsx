@@ -20,7 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onAddToCart,
 }) => {
   return (
-    <Link href={`/collections/${product.slug}`}>
+    <Link href={`/collections/category/${product.slug}`}>
     <div className="
   group
   max-w-[55vw] sm:max-w-[240px] md:max-w-[260px]

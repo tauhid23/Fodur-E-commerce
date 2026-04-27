@@ -80,7 +80,11 @@ export default function MyOrdersPage() {
 
       {/* HEADER */}
       <section className="max-w-6xl mx-auto mb-10">
-        <div className="rounded-3xl p-6 sm:p-8 border border-border bg-secondary-background">
+        <div className="rounded-3xl p-6 sm:p-8 bg-secondary-background
+  border border-border
+  shadow-[inset_0_1px_0px_rgba(255,255,255,0.6),inset_0_-2px_6px_rgba(0,0,0,0.06)]
+  backdrop-blur-md">
+        {/* <div className="rounded-3xl p-6 sm:p-8 border border-border bg-secondary-background"> */}
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
 
@@ -183,7 +187,7 @@ export default function MyOrdersPage() {
 
               </div>
 
-              {/* ✅ PROFESSIONAL PROGRESS BAR */}
+              {/*  PROFESSIONAL PROGRESS BAR */}
               <div className="px-5 pb-5">
 
                 {/* Base line */}

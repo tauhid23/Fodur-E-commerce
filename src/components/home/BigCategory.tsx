@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useRouter } from "next/navigation";
 
 type Category = {
@@ -36,7 +35,7 @@ const BigCategory = () => {
 
   const handleNavigate = (title: string) => {
     const query = title.toLowerCase();
-    router.push(`/products?category=${query}`);
+    router.push(`/collections/${query}`);
   };
 
   return (
