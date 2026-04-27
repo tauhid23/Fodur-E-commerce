@@ -6,6 +6,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { LOGO } from "@/lib/nav-config";
 import { useNavLinks } from "@/lib/hooks/useNavLinks";
+import SearchOverlay from "../shared_Component/SearchOverlay";
 
 // ─── Variants ─────────────────────────────────────────────────────────
 const drawerVariants: Variants = {
@@ -25,6 +26,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount]                 = useState(2);
   const { links, loading }          = useNavLinks();
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -55,11 +57,12 @@ export default function Navbar() {
               {LOGO}
             </Link>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center">
               <motion.button
                 type="button"
-                whileTap={{ scale: 0.9 }}
-                className="flex h-10 w-10 items-center justify-center rounded-full text-accent hover:bg-white/10 transition"
+                whileTap={{ scale: 0.6 }}
+                onClick={() => setSearchOpen(true)}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-accent hover:bg-white/10 transition"
                 aria-label="Search"
               >
                 <Search size={20} />
@@ -83,7 +86,7 @@ export default function Navbar() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium
+                      className={`flex items-center gap-1.5 px-2 py-2 rounded-full text-sm font-medium
                         transition-all duration-150
                         ${item.highlight
                           ? "text-red-400 hover:text-red-300"
@@ -218,6 +221,8 @@ export default function Navbar() {
           </motion.aside>
         )}
       </AnimatePresence>
+        <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+      
     </>
   );
 }
@@ -228,8 +233,8 @@ function CartButton({ count }: { count: number }) {
     <motion.button
       type="button"
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.92 }}
-      className="relative flex h-10 w-10 items-center justify-center rounded-full text-accent hover:bg-white/10 transition"
+      whileTap={{ scale: 0.90 }}
+      className="relative flex h-8 w-8 items-center justify-center rounded-full text-accent hover:bg-white/10 transition"
       aria-label="Cart"
     >
       <ShoppingBag size={20} />
@@ -237,7 +242,7 @@ function CartButton({ count }: { count: number }) {
         <motion.span
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center
+          className="absolute -right-1 -top-0.5 flex h-4 w-4 items-center justify-center
             rounded-full bg-primary text-[10px] font-bold text-white"
         >
           {count}
