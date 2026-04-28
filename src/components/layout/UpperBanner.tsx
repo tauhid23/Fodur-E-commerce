@@ -16,12 +16,12 @@ const textVariants: Variants = {
   enter: {
     y: "60%",
     opacity: 0,
-    filter: "blur(8px)",
+    // filter: "blur(1px)",
   },
   center: {
     y: "0%",
     opacity: 1,
-    filter: "blur(0px)",
+    // filter: "blur(0px)",
     transition: {
       y:       { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
       opacity: { duration: 0.5, ease: "easeOut" },
@@ -31,7 +31,7 @@ const textVariants: Variants = {
   exit: {
     y: "-60%",
     opacity: 0,
-    filter: "blur(8px)",
+    // filter: "blur(1px)",
     transition: {
       y:       { duration: 0.4, ease: [0.4, 0, 1, 1] },
       opacity: { duration: 0.3, ease: "easeIn" },
@@ -79,7 +79,7 @@ const UpperBanner = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            className="absolute text-xs sm:text-sm md:text-base font-medium tracking-wide text-center px-4 whitespace-nowrap"
+            className="absolute text-xs sm:text-sm md:text-base tracking-wide text-center px-4 whitespace-nowrap"
             style={{ willChange: "transform, opacity, filter" }}
           >
             {bannerTexts[currentIndex]}
@@ -242,7 +242,7 @@ export default UpperBanner;
 //                 key={i}
 //                 custom={direction}
 //                 variants={wordVariants}
-//                 className="text-xs sm:text-sm md:text-base font-medium tracking-wide inline-block"
+//                 className="text-xs sm:text-sm md:text-base tracking-wide inline-block"
 //                 style={{ willChange: "transform, opacity, filter" }}
 //               >
 //                 {word}
