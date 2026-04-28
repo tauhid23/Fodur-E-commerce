@@ -264,7 +264,7 @@ const ProductCollection = ({
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-7 sm:gap-6"
           >
             {filteredProducts.map((product) => (
               <motion.div

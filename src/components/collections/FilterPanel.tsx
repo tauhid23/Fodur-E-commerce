@@ -20,7 +20,7 @@ type Props = {
   onApply?: (filters: FilterState) => void;
 };
 
-// ✅ Fix: explicit Transition type narrows `ease` from string → Easing
+//  Fix: explicit Transition type narrows `ease` from string → Easing
 const exitTransition: Transition = { duration: 0.25, ease: "easeInOut" };
 
 const panelVariants: Variants = {
@@ -42,7 +42,7 @@ const listVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden:  { opacity: 0, x: 20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.22, ease: "easeOut" } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.42, ease: "easeOut" } },
 };
 
 const CATEGORIES:    Category[]    = ["All", "Men", "Women", "Kids"];
@@ -185,9 +185,9 @@ export default function FilterPanel({ open, onClose, onApply }: Props) {
                       placeholder="Min"
                       value={filters.minPrice}
                       onChange={(e) => setFilters((prev) => ({ ...prev, minPrice: e.target.value }))}
-                      className="w-full pl-7 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10
+                      className="w-full pl-7 pr-3 py-2.5 rounded-xl bg-white/5 border border-foreground/10
                         text-sm text-accent placeholder:text-accent/25 outline-none
-                        focus:border-white/30 transition"
+                        focus:border-foreground/30 transition"
                     />
                   </div>
                   <span className="text-accent/20 shrink-0 text-lg">—</span>
@@ -198,50 +198,138 @@ export default function FilterPanel({ open, onClose, onApply }: Props) {
                       placeholder="Max"
                       value={filters.maxPrice}
                       onChange={(e) => setFilters((prev) => ({ ...prev, maxPrice: e.target.value }))}
-                      className="w-full pl-7 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10
+                      className="w-full pl-7 pr-3 py-2.5 rounded-xl bg-white/5 border border-foreground/10
                         text-sm text-accent placeholder:text-accent/25 outline-none
-                        focus:border-white/30 transition"
+                        focus:border-foreground/30 transition"
                     />
                   </div>
                 </div>
               </motion.div>
 
               {/* Availability */}
-              <motion.div variants={itemVariants}>
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-accent/30 mb-3">
-                  Availability
-                </p>
-                <div className="space-y-2">
-                  {AVAILABILITIES.map((opt) => {
-                    const isActive = filters.availability.includes(opt);
-                    return (
-                      <motion.label
-                        key={opt}
-                        whileTap={{ scale: 0.98 }}
-                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl cursor-pointer
-                          border transition-all duration-150
-                          ${isActive
-                            ? "border-primary/40 bg-white/[0.06]"
-                            : "border-white/10 hover:border-white/20 hover:bg-white/5"
-                          }`}
-                      >
-                        <span className={`text-sm font-medium transition-colors
-                          ${isActive ? "text-accent" : "text-accent/60"}`}>
-                          {opt}
-                        </span>
-                        <div
-                          onClick={() => toggleAvailability(opt)}
-                          className={`flex h-5 w-5 items-center justify-center rounded-full border-[1.5px]
-                            transition-all duration-150 cursor-pointer
-                            ${isActive ? "border-primary bg-primary" : "border-white/20"}`}
-                        >
-                          {isActive && <Check size={11} className="text-white" />}
-                        </div>
-                      </motion.label>
-                    );
-                  })}
-                </div>
-              </motion.div>
+              <motion.div
+  variants={itemVariants}
+  className="relative"
+>
+  {/* Section Header */}
+  <div className="flex items-center justify-between mb-4">
+    <p
+      className="text-[10px] font-semibold uppercase tracking-[0.28em]
+      text-accent/35"
+    >
+      Availability
+    </p>
+
+    {filters.availability.length > 0 && (
+      <motion.span
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="text-[10px] font-medium text-primary"
+      >
+        {filters.availability.length} Selected
+      </motion.span>
+    )}
+  </div>
+
+  {/* Options */}
+  <div className="space-y-2.5">
+    {AVAILABILITIES.map((opt, index) => {
+      const isActive = filters.availability.includes(opt);
+
+      return (
+        <motion.label
+          key={opt}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: index * 0.04,
+            duration: 0.28,
+          }}
+          whileHover={{
+            y: -1,
+            transition: { duration: 0.18 },
+          }}
+          whileTap={{ scale: 0.985 }}
+          onClick={() => toggleAvailability(opt)}
+          className={`group relative flex items-center justify-between
+            px-4 py-3.5 rounded-2xl cursor-pointer overflow-hidden
+            border backdrop-blur-sm
+            transition-all duration-300
+            ${
+              isActive
+                ? "border-primary/40 bg-primary/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.03)]"
+                : "border-primary/10 hover:border-primary/25 hover:bg-white/[0.03]"
+            }`}
+        >
+          {/* Soft active glow */}
+          {isActive && (
+            <motion.div
+              layoutId="availabilityGlow"
+              className="absolute inset-0 bg-gradient-to-r
+                from-primary/[0.10] via-transparent to-primary/[0.05]"
+            />
+          )}
+
+          {/* Text */}
+          <span
+            className={`relative z-10 text-sm font-medium transition-all duration-200
+              ${
+                isActive
+                  ? "text-accent"
+                  : "text-accent/65 group-hover:text-accent/90"
+              }`}
+          >
+            {opt}
+          </span>
+
+          {/* Custom Checkbox */}
+          <motion.div
+            animate={
+              isActive
+                ? {
+                    scale: 1,
+                    borderColor: "rgba(var(--primary),1)",
+                  }
+                : {
+                    scale: 1,
+                  }
+            }
+            transition={{
+              type: "spring",
+              stiffness: 320,
+              damping: 22,
+            }}
+            className={`relative z-10 flex h-5 w-5 items-center justify-center
+              rounded-full border-[1.5px] transition-all duration-300
+              ${
+                isActive
+                  ? "border-primary bg-primary shadow-md"
+                  : "border-white/20 group-hover:border-primary/40"
+              }`}
+          >
+            <AnimatePresence mode="wait">
+              {isActive && (
+                <motion.div
+                  key="check"
+                  initial={{ scale: 0, rotate: -20, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 20,
+                  }}
+                >
+                  <Check size={11} className="text-accent" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </motion.label>
+      );
+    })}
+  </div>
+</motion.div>
             </motion.div>
 
             {/* Footer */}
