@@ -63,4 +63,28 @@ export const products: Product[] = [
     category: "kids",
     slug: "kids-tshirt",
   },
+  {
+    id: 7,
+    title: "Kids T-Shirt",
+    price: 12.99,
+    image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=80ucts/kids2.jpg",
+    category: "kids",
+    slug: "kids-tshirt",
+  },
+  {
+    id: 8,
+    title: "Kids T-Shirt",
+    price: 12.99,
+    image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=80ucts/kids2.jpg",
+    category: "kids",
+    slug: "kids-tshirt",
+  },
+  {
+    id: 9,
+    title: "Kids T-Shirt",
+    price: 12.99,
+    image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=80ucts/kids2.jpg",
+    category: "kids",
+    slug: "kids-tshirt",
+  },
 ];

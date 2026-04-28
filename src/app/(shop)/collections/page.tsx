@@ -13,7 +13,7 @@ export default async function CollectionsPage() {
     <div className="space-y-10">
       <ProductCollection
         initialCategory="all"
-        initialProducts={products} // no filter needed
+        initialProducts={products} 
       />
       <SubscribeSection />
       <FeatureGrid />
