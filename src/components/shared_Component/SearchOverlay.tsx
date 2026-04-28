@@ -115,7 +115,7 @@ export default function SearchOverlay({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-[64px] lg:top-[72px] inset-x-0 z-50
+            className="fixed top-[80px] lg:top-[89px] inset-x-0 z-50
               bg-secondary-background border-b border-border shadow-xl"
           >
             {/* ── Search Input Row ── */}
