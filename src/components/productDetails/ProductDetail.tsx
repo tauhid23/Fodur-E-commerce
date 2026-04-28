@@ -115,7 +115,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </span>
           </div> */}
 
-          {/* DOTS (UNCHANGED — YOUR REQUEST) */}
+          {/* DOTS */}
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
             {productImages.map((_, i) => (
               <button
@@ -123,26 +123,26 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                 onClick={() => setActiveIndex(i)}
                 className={`rounded-full transition-all duration-300 ${
                   activeIndex === i
-                    ? "w-4 h-1.5 bg-black"
-                    : "w-1.5 h-1.5 bg-black/30"
+                    ? "w-4 h-1.5 bg-white"
+                    : "w-1.5 h-1.5 bg-white/40"
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* ───────── RIGHT SIDE (UNCHANGED STRUCTURE) ───────── */}
-        <div className="flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-10 lg:py-16">
+        {/* ───────── RIGHT SIDE ───────── */}
+        <div className="font-body flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-10 lg:py-16">
 
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+          <h1 className="font-body text-[25px] sm:text-4xl font-bold text-gray-900">
             {product.title}
           </h1>
 
           <div className="flex items-center gap-3 mt-3">
-            <span className="text-2xl font-bold text-gray-900">
+            <span className="text-lg font-sans font-extralight text-gray-600">
               ${product.price}
             </span>
-            <span className="text-sm text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+            <span className="text-xs text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded-full">
               In Stock
             </span>
           </div>
@@ -178,7 +178,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <div className="mt-6">
             <h3 className="text-sm font-semibold mb-3">Quantity</h3>
 
-            <div className="flex items-center border rounded-xl w-fit overflow-hidden">
+            <div className="flex items-center border border-foreground/20 rounded-xl w-fit overflow-hidden">
               <button
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                 className="w-10 h-10"
@@ -208,7 +208,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
 
             <div className="flex gap-3">
 
-              <button className="flex-1 border border-black py-3 rounded-2xl font-semibold">
+              <button className="flex-1 border border-foreground/30 py-3 rounded-2xl font-semibold">
                 <ShoppingBag size={16} className="inline mr-2" />
                 Add to Cart
               </button>

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 
 const SubscribeSection = () => {
   return (
@@ -9,7 +8,7 @@ const SubscribeSection = () => {
       {/* Subscribe */}
       <div className="text-center max-w-md mx-auto">
         
-        <h2 className=" text-2xl font-body font-extralight italic tracking-wide text-black">
+        <h2 className=" text-2xl font-mono font-extralight tracking-wide text-black">
           SUBSCRIBE
         </h2>
 
@@ -34,7 +33,7 @@ const SubscribeSection = () => {
             className="flex-1 px-4 py-3 border border-gray-400 rounded-md text-sm outline-none"
           />
 
-          <button className="px-5 py-3 bg-black text-white text-sm font-semibold">
+          <button className="px-5 py-3 bg-black text-white text-sm font-body font-semibold">
             SUBSCRIBE
           </button>
         </div>
@@ -42,7 +41,7 @@ const SubscribeSection = () => {
 
       {/* Instagram Section */}
       <div className="mt-10 text-center">
-        <h3 className="text-lg font-semibold text-black">
+        <h3 className="text-lg font-body font-semibold text-black">
           Follow us on Instagram: @treize
         </h3>
 
@@ -51,7 +50,7 @@ const SubscribeSection = () => {
           
           <div className="w-[140px] h-[180px] overflow-hidden bg-white">
             <img
-              src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=600&q=80"
+              src="https://i.ibb.co/qLRjrSvp/alireza-heidarpour-4x-IF4-R8t-Qls-unsplash.jpg"
               alt="insta1"
               className="w-full h-full object-cover"
             />
@@ -59,7 +58,7 @@ const SubscribeSection = () => {
 
           <div className="w-[140px] h-[180px] overflow-hidden bg-white">
             <img
-              src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80"
+              src="https://i.ibb.co/DH7Z8Y3S/hunters-race-h-No-SCx-PWYII-unsplash-1.jpg"
               alt="insta2"
               className="w-full h-full object-cover"
             />
