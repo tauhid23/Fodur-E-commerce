@@ -47,7 +47,7 @@ export default function Navbar() {
               type="button"
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-accent hover:bg-white/10 transition"
+              className="flex h-16 w-16 items-center justify-center rounded-full text-accent hover:bg-white/10 transition"
               aria-label="Open menu"
             >
               <Menu size={22} />
