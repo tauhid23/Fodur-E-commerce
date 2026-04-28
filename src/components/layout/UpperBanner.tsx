@@ -104,7 +104,7 @@ const UpperBanner = () => {
   const words = bannerTexts[currentIndex].split(" ");
 
   return (
-    <div className="w-full bg-primary text-white h-9 sm:h-12 flex items-center justify-between px-3 sm:px-6 overflow-hidden">
+    <div className="w-full bg-accent/90 text-white h-9 sm:h-12 flex items-center justify-between px-3 sm:px-6 overflow-hidden">
       <button
         onClick={prevSlide}
         className="shrink-0 p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200"
