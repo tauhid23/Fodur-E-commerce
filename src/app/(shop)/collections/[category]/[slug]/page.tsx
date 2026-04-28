@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { products } from "@/lib/constants";
 import SubscribeSection from "@/components/home/Subscribe";
 import FeatureGrid from "@/components/home/FeatureGrid";
+import { ClipReveal, FadeUp, StaggerList } from "@/animation";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -17,11 +18,18 @@ export default async function ProductDetailsPage({ params }: PageProps) {
     notFound();
   }
 
+  // return (
+  //   <div className="space-y-4">
+  //   <ProductDetails product={product} />;
+  //   <SubscribeSection/>
+  //   <FeatureGrid/>
+  //   </div>
+  // ) 
   return (
     <div className="space-y-4">
-    <ProductDetails product={product} />;
-    <SubscribeSection/>
-    <FeatureGrid/>
+      <FadeUp><ProductDetails product={product} /></FadeUp>
+      <ClipReveal from="up"><SubscribeSection /></ClipReveal>
+      <FadeUp delay={0.1}><FeatureGrid /></FadeUp>
     </div>
-  ) 
+  );
 }
